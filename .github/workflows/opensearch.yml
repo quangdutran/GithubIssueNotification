@@ -1,4 +1,4 @@
-name: Check Public Repo Issues and Notify Slack
+name: Check OpenSearch Repo Issues and Notify Slack
 
 on:
   schedule:
