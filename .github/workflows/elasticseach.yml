@@ -2,13 +2,15 @@ name: Check Public Repo Issues and Notify Slack
 
 on:
   schedule:
-    - cron: "0 9 * * *" # Daily at 09:00 UTC
+    - cron: "*/2 * * * *" # Daily at 09:00 UTC
   workflow_dispatch:
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
       - name: Check issues with specific label in last 24h
         id: check_issues
         run: |
