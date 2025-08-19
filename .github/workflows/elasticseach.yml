@@ -29,9 +29,13 @@ jobs:
           echo "DEBUG: CREATED_AT=$CREATED_AT"
 
           if [ -n "$TITLE" ] && [ -n "$CREATED_AT" ]; then
-            CREATED_TS=$(date -d "$CREATED_AT" +%s)
+            echo "DEBUG: Raw CREATED_AT=$CREATED_AT"
+
+            CREATED_TS=$(date -u -d "$CREATED_AT" +"%s")
             NOW_TS=$(date +%s)
             DIFF=$(( NOW_TS - CREATED_TS ))
+
+            echo "DEBUG: CREATED_TS=$CREATED_TS NOW_TS=$NOW_TS DIFF=$DIFF"
 
             if [ $DIFF -le 86400 ]; then
               echo "title=$TITLE" >> $GITHUB_OUTPUT
@@ -41,8 +45,8 @@ jobs:
               echo "url=" >> $GITHUB_OUTPUT
             fi
           else
-            echo "title=" >> $GITHUB_OUTPUT
-            echo "url=" >> $GITHUB_OUTPUT
+              echo "title=" >> $GITHUB_OUTPUT
+              echo "url=" >> $GITHUB_OUTPUT
           fi
       
       - name: Debug outputs
