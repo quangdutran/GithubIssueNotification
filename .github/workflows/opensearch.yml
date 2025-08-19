@@ -32,7 +32,7 @@ jobs:
           echo "DEBUG: CREATED_AT=$CREATED_AT"
 
           if [ -n "$TITLE" ] && [ -n "$CREATED_AT" ]; then
-            CREATED_TS=$(date -d "$CREATED_AT" +%s)
+            CREATED_TS=$(date -u -d "$CREATED_AT" +"%s")
             NOW_TS=$(date +%s)
             DIFF=$(( NOW_TS - CREATED_TS ))
 
@@ -47,7 +47,6 @@ jobs:
             echo "title=" >> $GITHUB_OUTPUT
             echo "url=" >> $GITHUB_OUTPUT
           fi
-          echo "title=TEST VALUE" >> $GITHUB_OUTPUT
       
       - name: Debug outputs
         run: |
