@@ -47,6 +47,7 @@ jobs:
             echo "title=" >> $GITHUB_OUTPUT
             echo "url=" >> $GITHUB_OUTPUT
           fi
+          echo "title=TEST VALUE" >> $GITHUB_OUTPUT
       
       - name: Debug outputs
         run: |

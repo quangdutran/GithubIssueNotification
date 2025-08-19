@@ -16,12 +16,9 @@ jobs:
         run: |
           OWNER="elastic"
           REPO="elasticsearch"
-          LABEL="bug,enhancement"
+          LABEL=">bug,>enhancement"
 
           RESPONSE=$(curl -s "https://api.github.com/repos/$OWNER/$REPO/issues?labels=$LABEL&state=open&sort=created&direction=desc&per_page=1")
-
-          echo "DEBUG: LINK: https://api.github.com/repos/$OWNER/$REPO/issues?labels=$LABEL"
-          echo "DEBUG: RESPONSE=$RESPONSE"
 
           TITLE=$(echo "$RESPONSE" | jq -r '.[0].title // empty')
           URL=$(echo "$RESPONSE" | jq -r '.[0].html_url // empty')
